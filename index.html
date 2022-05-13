@@ -8,8 +8,10 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Taxi Rank-App</title>
     <link rel="stylesheet" href="./css/style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="./js/app.js"></script>
 </head>
 
 <body>
@@ -17,6 +19,40 @@
         <div class="row">
             <div class="col-12">
                 <h1>Taxi Rank App</h1>
+
+                <div class="col-12" x-data="rank">
+
+                    <table class="taxiRank">
+                        <tr>
+                            <th>Departure</th>
+                            <th>Destination</th>
+                            <th>Passenger Actions</th>
+                            <th>Taxi Trips</th>
+                            <th>Taxi Fare</th>
+                            <th>Total Fare</th>
+                            <th>Taxis Available</th>
+                        </tr>
+                        <template x-for="rank in ranks">
+                            <tr>
+                                <td x-text="mainRank"></td>
+                                <td x-text="rank.destination"></td>
+                                <td>
+                                    <button @click="rank.add()">+</button>
+                                    <span x-text="rank.queue"></span>
+                                    <button @click="rank.minus()">-</button>
+                                </td>
+                                <td x-text="rank.trips"></td>
+                                <td x-text="rank.fare"></td>
+                                <td x-text="rank.getTotalFare()"></td>
+                                <td x-text="rank.taxis"></td>
+                                <td>
+                                    <button @click="rank.leave()">Leave</button>
+                                </td>
+                            </tr>
+                        </template>
+                    </table>
+
+                </div>
 
             </div>
         </div>
