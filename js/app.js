@@ -21,7 +21,6 @@ document.addEventListener('alpine:init', () => {
                         this.queue++
                         if(this.queue >= 7){
                             alert('Limit reached')
-                            // this.limit;
                         }
                     },
                     minus() {
