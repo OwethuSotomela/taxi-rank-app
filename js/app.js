@@ -6,9 +6,6 @@ document.addEventListener('alpine:init', () => {
             },
             open: false,
             mainRank: 'Cape Town',
-            test() {
-                alert('I am testing here!')
-            },
             ranks: [
                 {
                     destination: 'Belhar',
@@ -30,14 +27,35 @@ document.addEventListener('alpine:init', () => {
                         this.trips++
                         this.taxis--
                         this.queue -= this.limit
-
                     }
                 },
                 {
-                    destination: 'Nyanga',
+                    destination: 'Parow',
                     limit: 5,
                     queue: 0,
-                    fare: 22,
+                    fare: 18,
+                    trips: 0,
+                    taxis: 4,
+                    getTotalFare() {
+                        return 5
+                    },
+                    add() {
+                        this.queue++
+                    },
+                    minus() {
+                        this.queue--
+                    },
+                    leave() {
+                        this.trips++
+                        this.taxis--
+                        this.queue -= this.limit
+                    }
+                }, 
+                {
+                    destination: 'Woodstock',
+                    limit: 5,
+                    queue: 0,
+                    fare: 10,
                     trips: 0,
                     taxis: 4,
                     getTotalFare() {
