@@ -2,7 +2,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('rank', () => {
         return {
             init() {
-                console.log('Hi Oz');
+                // console.log('Hi Oz');
             },
             open: false,
             mainRank: 'Cape Town',
@@ -15,7 +15,7 @@ document.addEventListener('alpine:init', () => {
                     trips: 0,
                     taxis: 4,
                     getTotalFare() {
-                        return 3
+                        return Number(this.queue) * Number(this.fare)
                     },
                     add() {
                         this.queue++
@@ -37,7 +37,7 @@ document.addEventListener('alpine:init', () => {
                     trips: 0,
                     taxis: 4,
                     getTotalFare() {
-                        return 5
+                        return Number(this.queue) * Number(this.fare)
                     },
                     add() {
                         this.queue++
@@ -55,11 +55,11 @@ document.addEventListener('alpine:init', () => {
                     destination: 'Woodstock',
                     limit: 5,
                     queue: 0,
-                    fare: 10,
+                    fare: 12,
                     trips: 0,
                     taxis: 4,
                     getTotalFare() {
-                        return 5
+                        return Number(this.queue) * Number(this.fare)
                     },
                     add() {
                         this.queue++
