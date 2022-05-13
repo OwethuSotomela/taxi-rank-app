@@ -1,4 +1,4 @@
-# taxi-rank-app
+# taxi-rank-app (Alpine-JS)
 
 [View Taxi-Rank-App](https://owethusotomela.github.io/taxi-rank-app/)
 
