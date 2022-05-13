@@ -2,14 +2,14 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('rank', () => {
         return {
             init() {
-                // console.log('Hi Oz');
+                console.log('Hi Oz');
             },
             open: false,
             mainRank: 'Cape Town',
             ranks: [
                 {
                     destination: 'Belhar',
-                    limit: 5,
+                    limit: 7,
                     queue: 0,
                     fare: 22,
                     trips: 0,
@@ -19,6 +19,9 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
+                        if(this.queue >= 7){
+                            alert('Limit reached')
+                        }
                     },
                     minus() {
                         this.queue--
@@ -31,7 +34,7 @@ document.addEventListener('alpine:init', () => {
                 },
                 {
                     destination: 'Parow',
-                    limit: 5,
+                    limit: 7,
                     queue: 0,
                     fare: 18,
                     trips: 0,
@@ -41,6 +44,9 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
+                        if(this.queue >= 7){
+                            alert('Limit reached')
+                        }
                     },
                     minus() {
                         this.queue--
@@ -53,7 +59,7 @@ document.addEventListener('alpine:init', () => {
                 }, 
                 {
                     destination: 'Woodstock',
-                    limit: 5,
+                    limit: 7,
                     queue: 0,
                     fare: 12,
                     trips: 0,
@@ -63,6 +69,9 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
+                        if(this.queue >= 7){
+                            alert('Limit reached')
+                        }
                     },
                     minus() {
                         this.queue--

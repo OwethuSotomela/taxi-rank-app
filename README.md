@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # taxi-rank-app (Alpine JS)
+=======
+# taxi-rank-app (Alpine-JS)
+>>>>>>> main
 
 [View Taxi-Rank-App](https://owethusotomela.github.io/taxi-rank-app/)
 
@@ -18,3 +22,9 @@
 * Store data in localStorage so that data is retained after a screen refresh.
 * Add the ability to add more destinations.
 * What would if take to add more Taxi ranks?
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> main
