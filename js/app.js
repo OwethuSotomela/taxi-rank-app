@@ -2,7 +2,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('rank', () => {
         return {
             init() {
-                console.log('Hi Oz');
+                // console.log('Hi Oz');
             },
             open: false,
             mainRank: 'Cape Town',
