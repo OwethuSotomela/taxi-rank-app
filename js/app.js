@@ -24,7 +24,11 @@ document.addEventListener('alpine:init', () => {
                         }
                     },
                     leaveQueue() {
-                        this.queue--
+                        if (this.queue >= 1) {
+                            this.queue--
+                        } else {
+                            alert('Invalid Action')
+                        }
                     },
                     leave() {
 
@@ -55,7 +59,12 @@ document.addEventListener('alpine:init', () => {
                         }
                     },
                     leaveQueue() {
-                        this.queue--
+
+                        if (this.queue >= 1) {
+                            this.queue--
+                        } else {
+                            alert('Invalid Action')
+                        }
                     },
                     leave() {
 
@@ -86,10 +95,15 @@ document.addEventListener('alpine:init', () => {
                         }
                     },
                     leaveQueue() {
-                        this.queue--
+                        
+                        if (this.queue >= 1) {
+                            this.queue--
+                        } else {
+                            alert('Invalid Action')
+                        }
                     },
                     leave() {
-                        
+
                         if (this.queue <= 7) {
                             alert('Taxi cannot leave the rank unless full')
                         } else {
