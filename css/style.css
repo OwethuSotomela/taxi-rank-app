@@ -1,11 +1,11 @@
 body{
-    /* background-color: blue; */
+    height: 100vh;
+    background-image: url('../images/tr1.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .col-12{
     text-align: center;
-}
-table{
-    /* justify-content: center; */
 }
 .taxiRank td,
 .taxiRank th {
@@ -27,4 +27,7 @@ table{
     text-align: center;
     background-color: #04AA6D;
     color: white;
+}
+.taxiRank{
+    background-color: #ddd;
 }
