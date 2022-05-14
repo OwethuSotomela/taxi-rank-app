@@ -38,13 +38,13 @@
                                 <td x-text="mainRank"></td>
                                 <td x-text="rank.destination"></td>
                                 <td>
-                                    <button @click="rank.add()">+</button>
+                                    <button @click="rank.queueInLine()">+</button>
                                     <span x-text="rank.queue"></span>
-                                    <button @click="rank.minus()">-</button>
+                                    <button @click="rank.leaveQueue()">-</button>
                                 </td>
                                 <td x-text="rank.trips"></td>
-                                <td x-text="rank.fare"></td>
-                                <td x-text="rank.getTotalFare()"></td>
+                                <td x-text="'R' + rank.fare"></td>
+                                <td x-text="'R' + rank.getTotalFare()"></td>
                                 <td x-text="rank.taxis"></td>
                                 <td>
                                     <button @click="rank.leave()">Leave</button>
