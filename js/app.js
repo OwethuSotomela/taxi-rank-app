@@ -19,7 +19,7 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
-                        if(this.queue >= 7){
+                        if (this.queue >= 7) {
                             alert('Limit reached')
                         }
                     },
@@ -27,9 +27,18 @@ document.addEventListener('alpine:init', () => {
                         this.queue--
                     },
                     leave() {
-                        this.trips++
-                        this.taxis--
-                        this.queue -= this.limit
+
+                        if (this.queue <= 0) {
+                            alert('Empty taxi cannot leave the rank')
+                        }
+                        if (this.queue < 7) {
+                            alert('Taxi cannot leave unless full')
+                        } else {
+                            this.trips++
+                            this.taxis--
+                            this.queue -= this.limit
+                        }
+
                     }
                 },
                 {
@@ -44,19 +53,28 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
-                        if(this.queue >= 7){
-                            alert('Limit reached')
+                        if (this.queue >= 7) {
+                            alert('Mini taxi full & can leave the rank')
                         }
                     },
                     minus() {
                         this.queue--
                     },
                     leave() {
-                        this.trips++
-                        this.taxis--
-                        this.queue -= this.limit
+
+                        if (this.queue <= 0) {
+                            alert('Empty taxi cannot leave the rank')
+                        }
+                        if (this.queue < 7) {
+                            alert('Taxi cannot leave unless full')
+                        } else {
+                            this.trips++
+                            this.taxis--
+                            this.queue -= this.limit
+                        }
                     }
-                }, 
+
+                },
                 {
                     destination: 'Woodstock',
                     limit: 7,
@@ -69,7 +87,7 @@ document.addEventListener('alpine:init', () => {
                     },
                     add() {
                         this.queue++
-                        if(this.queue >= 7){
+                        if (this.queue >= 7) {
                             alert('Limit reached')
                         }
                     },
@@ -77,9 +95,17 @@ document.addEventListener('alpine:init', () => {
                         this.queue--
                     },
                     leave() {
-                        this.trips++
-                        this.taxis--
-                        this.queue -= this.limit
+                        if (this.queue <= 0) {
+                            alert('Empty taxi cannot leave the rank')
+                        }
+                        if (this.queue < 7) {
+                            alert('Taxi cannot leave unless full')
+                        } else {
+                            this.trips++
+                            this.taxis--
+                            this.queue -= this.limit
+                        }
+
                     }
                 }
             ],

@@ -9,7 +9,7 @@ body{
 }
 .taxiRank td,
 .taxiRank th {
-    border: 1px solid #ddd;
+    border: 1px solid white;
     padding: 8px;
 }
 
