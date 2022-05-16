@@ -14,33 +14,40 @@ document.addEventListener('alpine:init', () => {
                     fare: 22,
                     trips: 0,
                     taxis: 4,
+
+                    taxiFull: 'Mini taxi full & can leave the rank',
+                    taxiNotFull: 'Taxi cannot leave the rank unless full',
+                    invalidAction: 'Invalid action',
+                    feedback: '',
+
                     getTotalFare() {
                         return Number(this.queue) * Number(this.fare)
                     },
                     queueInLine() {
                         this.queue++
                         if (this.queue >= 7) {
-                            alert('Mini taxi full & can leave the rank')
+
+                            setTimeout(()=>{
+                                this.feedback = this.taxiFull
+                            }, 1000)
                         }
                     },
                     leaveQueue() {
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            alert('Invalid Action')
+                            this.feedback = this.invalidAction
                         }
                     },
                     leave() {
 
                         if (this.queue < 7) {
-                            alert('Taxi cannot leave the rank unless full')
+                            this.feedback = this.taxiFull
                         } else {
                             this.trips++
                             this.taxis--
                             this.queue -= this.limit
                         }
-
-                        return Number
 
                     }
                 },
@@ -51,13 +58,19 @@ document.addEventListener('alpine:init', () => {
                     fare: 18,
                     trips: 0,
                     taxis: 4,
+
+                    taxiFull: 'Mini taxi full & can leave the rank',
+                    taxiNotFull: 'Taxi cannot leave the rank unless full',
+                    invalidAction: 'Invalid action',
+                    feedback: '',
+
                     getTotalFare() {
                         return Number(this.queue) * Number(this.fare)
                     },
                     queueInLine() {
                         this.queue++
                         if (this.queue >= 7) {
-                            alert('Mini taxi full & can leave the rank')
+                            this.feedback = this.taxiFull
                         }
                     },
                     leaveQueue() {
@@ -65,13 +78,13 @@ document.addEventListener('alpine:init', () => {
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            alert('Invalid Action')
+                            this.feedback = this.invalidAction
                         }
                     },
                     leave() {
 
                         if (this.queue < 7) {
-                            alert('Taxi cannot leave the rank unless full')
+                            this.feedback = this.taxiNotFull
                         } else {
                             this.trips++
                             this.taxis--
@@ -87,27 +100,33 @@ document.addEventListener('alpine:init', () => {
                     fare: 12,
                     trips: 0,
                     taxis: 4,
+
+                    taxiFull: 'Mini taxi full & can leave the rank',
+                    taxiNotFull: 'Taxi cannot leave the rank unless full',
+                    invalidAction: 'Invalid action',
+                    feedback: '',
+
                     getTotalFare() {
                         return Number(this.queue) * Number(this.fare)
                     },
                     queueInLine() {
                         this.queue++
                         if (this.queue >= 7) {
-                            alert('Mini taxi full & can leave the rank')
+                            this.feedback = this.taxiFull
                         }
                     },
                     leaveQueue() {
-                        
+
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            alert('Invalid Action')
+                            this.feedback = this.invalidAction
                         }
                     },
                     leave() {
 
                         if (this.queue <= 7) {
-                            alert('Taxi cannot leave the rank unless full')
+                            this.feedback = this.taxiNotFull
                         } else {
                             this.trips++
                             this.taxis--
