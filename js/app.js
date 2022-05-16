@@ -40,6 +40,8 @@ document.addEventListener('alpine:init', () => {
                             this.queue -= this.limit
                         }
 
+                        return Number
+
                     }
                 },
                 {

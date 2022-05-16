@@ -1,6 +1,11 @@
+h1{
+    color: azure;
+    text-shadow:  2px 2px 5px azure;
+}
+
 body{
     height: 100vh;
-    background-image: url('../images/tr3.jpeg');
+    background-image: url('../images/tr7.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -34,4 +39,8 @@ body{
     justify-content: center;
     text-align: flex-start;
     align-items: center;
+}
+
+.today{
+    color: #f2f2f2;
 }
