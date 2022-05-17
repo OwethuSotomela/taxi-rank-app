@@ -1,6 +1,11 @@
+h1{
+    color: black;
+    text-shadow:  2px 2px 5px black;
+}
+
 body{
     height: 100vh;
-    background-image: url('../images/tr1.jpeg');
+    background-image: url('../images/tr7.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -25,10 +30,22 @@ body{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #04AA6D;
+    background-color: #D79922;
     color: white;
 }
 .taxiRank{
     background-color: #ddd;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-align: flex-start;
+    align-items: center;
+}
+
+.today{
+    /* color: #f2f2f2; */
+    background-color: #f2f2f2;
+    font-size: larger;
+}
+.feedB{
+    margin-bottom: 1em;
 }

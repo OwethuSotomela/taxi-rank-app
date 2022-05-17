@@ -22,6 +22,15 @@
 
                 <div class="col-12" x-data="rank">
 
+                    <!-- Monday  -->
+                    <div class="feedB">
+                        <template x-for="rank in ranks">
+                            <span x-text="rank.feedback" class="today"></span>
+                        </template>
+                    </div>
+
+                    <!-- end  -->
+
                     <table class="taxiRank">
                         <tr>
                             <th>Departure</th>
