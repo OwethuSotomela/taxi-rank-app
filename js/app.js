@@ -27,22 +27,29 @@ document.addEventListener('alpine:init', () => {
                         this.queue++
                         if (this.queue >= 7) {
 
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 this.feedback = this.taxiFull
-                            }, 1000)
+                            }, 0000);
                         }
                     },
                     leaveQueue() {
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            this.feedback = this.invalidAction
+
+                            setTimeout(() => {
+                                this.feedback = this.invalidAction
+                            }, 0000);
                         }
                     },
                     leave() {
 
                         if (this.queue < 7) {
-                            this.feedback = this.taxiFull
+
+                            setTimeout(() => {
+                                this.feedback = this.taxiNotFull
+                            }, 0000)
+
                         } else {
                             this.trips++
                             this.taxis--
@@ -70,7 +77,10 @@ document.addEventListener('alpine:init', () => {
                     queueInLine() {
                         this.queue++
                         if (this.queue >= 7) {
-                            this.feedback = this.taxiFull
+
+                            setTimeout(() => {
+                                this.feedback = this.taxiFull
+                            }, 0000)
                         }
                     },
                     leaveQueue() {
@@ -78,18 +88,25 @@ document.addEventListener('alpine:init', () => {
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            this.feedback = this.invalidAction
+
+                            setTimeout(() => {
+                                this.feedback = this.invalidAction
+                            }, 0000)
                         }
                     },
                     leave() {
 
                         if (this.queue < 7) {
-                            this.feedback = this.taxiNotFull
+
+                            setTimeout(() => {
+                                this.feedback = this.taxiNotFull
+                            }, 0000)
                         } else {
                             this.trips++
                             this.taxis--
                             this.queue -= this.limit
                         }
+                        
                     }
 
                 },
@@ -112,7 +129,10 @@ document.addEventListener('alpine:init', () => {
                     queueInLine() {
                         this.queue++
                         if (this.queue >= 7) {
-                            this.feedback = this.taxiFull
+
+                            setTimeout(() => {
+                                this.feedback = this.taxiFull
+                            }, 0000)
                         }
                     },
                     leaveQueue() {
@@ -120,13 +140,17 @@ document.addEventListener('alpine:init', () => {
                         if (this.queue >= 1) {
                             this.queue--
                         } else {
-                            this.feedback = this.invalidAction
+                            setTimeout(() => {
+                                this.feedback = this.invalidAction
+                            }, 0000)
                         }
                     },
                     leave() {
 
                         if (this.queue <= 7) {
-                            this.feedback = this.taxiNotFull
+                            setTimeout(() => {
+                                this.feedback = this.taxiNotFull
+                            })
                         } else {
                             this.trips++
                             this.taxis--
