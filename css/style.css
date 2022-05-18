@@ -49,3 +49,12 @@ body{
 .feedB{
     margin-bottom: 1em;
 }
+.addRouteBtn{
+    margin-bottom: 2em;
+}
+.myRoute{
+    background-color: #ddd;
+    height: 2em;
+    padding-top: 1em;
+    padding-bottom: 2px;
+}

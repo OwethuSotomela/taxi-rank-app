@@ -22,10 +22,31 @@
 
                 <div class="col-12" x-data="rank">
 
+                    <!-- Wednesday -->
+
+                    <div x-data="{show: false}" class="AddRoute">
+                        <button @click="show=!show" class="addRouteBtn">Add route</button>
+
+                        <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
+
+                            <label>Destination</label>
+                            <input x-model="userDest" type="text">
+                            <label>Fare: <strong>R</strong></label>
+                            <input x-model="userAmount" type="number">
+
+                                <button @click="addRoute(userDest, userAmount)">Add</button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Down here  -->
+
                     <!-- Monday  -->
                     <div class="feedB">
                         <template x-for="rank in ranks">
-                            <span x-text="rank.feedback" class="today"></span>
+                            <span x-text="feedback" class="today"></span>
                         </template>
                     </div>
 
@@ -47,16 +68,16 @@
                                 <td x-text="mainRank"></td>
                                 <td x-text="rank.destination"></td>
                                 <td>
-                                    <button @click="rank.queueInLine()">+</button>
+                                    <button @click="queueInLine(rank)">+</button>
                                     <span x-text="rank.queue"></span>
-                                    <button @click="rank.leaveQueue()">-</button>
+                                    <button @click="leaveQueue(rank)">-</button>
                                 </td>
                                 <td x-text="rank.trips"></td>
                                 <td x-text="'R' + rank.fare"></td>
-                                <td x-text="'R' + rank.getTotalFare()"></td>
+                                <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                                 <td x-text="rank.taxis"></td>
                                 <td>
-                                    <button @click="rank.leave()">Leave</button>
+                                    <button @click="leave(rank)">Leave</button>
                                 </td>
                             </tr>
                         </template>
