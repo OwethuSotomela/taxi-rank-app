@@ -67,7 +67,7 @@ document.addEventListener('alpine:init', () => {
                     destination.queue--
                 } else {
                     setTimeout(() => {
-                        this.feedback = this.invalidAction
+                        destination.feedback = destination.invalidAction
                     }, 0000)
                 }
 

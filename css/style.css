@@ -47,9 +47,19 @@ body{
     font-size: larger;
 }
 .feedB{
+    margin-top: 1em;
     margin-bottom: 1em;
 }
+.feedback{
+    background-color: #87CEEB;
+}
 .addRouteBtn{
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 47rem;
+}
+.myAdd{
+    background-color: #D79922;
     margin-bottom: 2em;
 }
 .myRoute{
@@ -57,4 +67,8 @@ body{
     height: 2em;
     padding-top: 1em;
     padding-bottom: 2px;
+}
+#allData{
+    background-color: #87CEEB;
+    padding-bottom: 2em;
 }

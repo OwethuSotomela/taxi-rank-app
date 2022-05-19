@@ -12,6 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    
     <script src="./js/app.js"></script>
 </head>
 
@@ -21,12 +22,14 @@
             <div class="col-12">
                 <h1>Taxi Rank App</h1>
 
-                <div class="col-12" x-data="rank">
+                <div class="col-12" id="allData" x-data="rank">
                     
                     <!-- Wednesday -->
 
                     <div x-data="{show: false}" class="AddRoute">
-                        <button @click="show=!show" class="addRouteBtn">Add route</button>
+                        <div class="myAdd">
+                            <button @click="show=!show" class="addRouteBtn">Add route</button> 
+                        </div>
 
                         <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
                             <label>Destination</label>
