@@ -55,11 +55,12 @@ body{
 .addRouteBtn{
     margin-bottom: 1em;
     margin-top: 1em;
-    margin-left: 47rem;
+    /* margin-left: 47rem; */
 }
 .myAdd{
     background-color: #D79922;
     margin-bottom: 2em;
+    display: flex;
 }
 .myRoute{
     background-color: #ddd;
@@ -70,4 +71,14 @@ body{
 #allData{
     background-color: #87CEEB;
     padding-bottom: 2em;
+}
+.daysProfit{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    padding-right: 36rem;
+}
+.days{
+    margin-left: 2em;
+    margin-top: 1em;
 }

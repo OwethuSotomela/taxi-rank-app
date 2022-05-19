@@ -98,7 +98,7 @@ document.addEventListener('alpine:init', () => {
                 destination.overallTotal += newTotal
             },
             madeADay() {
-                return _.sumBy(this.ranks, o => o.overallTotal)
+                return _.sumBy(this.ranks, r => r.overallTotal)
             },
         }
     })
