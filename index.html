@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <title>Taxi Rank-App</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    
     <script src="./js/app.js"></script>
 </head>
 
@@ -20,15 +22,33 @@
             <div class="col-12">
                 <h1>Taxi Rank App</h1>
 
-                <div class="col-12" x-data="rank">
+                <div class="col-12" id="allData" x-data="rank">
+                    
+                    <!-- Wednesday -->
+
+                    <div x-data="{show: false}" class="AddRoute">
+                        <div class="myAdd">
+                            <button @click="show=!show" class="addRouteBtn">Add route</button> 
+                        </div>
+
+                        <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
+                            <label>Destination</label>
+                            <input x-model="userDest" type="text" />
+                            <label>Fare: <strong>R</strong></label>
+                            <input x-model="userAmount" type="number" />
+
+                            <button @click="addRoute(userDest, userAmount)">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Down here  -->
 
                     <!-- Monday  -->
                     <div class="feedB">
                         <template x-for="rank in ranks">
-                            <span x-text="rank.feedback" class="today"></span>
+                            <span x-text="feedback" class="today"></span>
                         </template>
                     </div>
-
                     <!-- end  -->
 
                     <table class="taxiRank">
@@ -47,23 +67,21 @@
                                 <td x-text="mainRank"></td>
                                 <td x-text="rank.destination"></td>
                                 <td>
-                                    <button @click="rank.queueInLine()">+</button>
+                                    <button @click="queueInLine(rank)">+</button>
                                     <span x-text="rank.queue"></span>
-                                    <button @click="rank.leaveQueue()">-</button>
+                                    <button @click="leaveQueue(rank)">-</button>
                                 </td>
                                 <td x-text="rank.trips"></td>
                                 <td x-text="'R' + rank.fare"></td>
-                                <td x-text="'R' + rank.getTotalFare()"></td>
+                                <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                                 <td x-text="rank.taxis"></td>
                                 <td>
-                                    <button @click="rank.leave()">Leave</button>
+                                    <button @click="leave(rank)">Leave</button>
                                 </td>
                             </tr>
                         </template>
                     </table>
-
                 </div>
-
             </div>
         </div>
     </div>
