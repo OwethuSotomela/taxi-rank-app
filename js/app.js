@@ -37,7 +37,7 @@ document.addEventListener('alpine:init', () => {
                     overallTotal: 0
 
                 },
-            ]),
+            ]).as('Taxi-Rank'),
             addRoute(stop, fare) {
 
                 this.ranks.push({
