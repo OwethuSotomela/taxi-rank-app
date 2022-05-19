@@ -42,20 +42,17 @@ body{
 }
 
 .today{
-    background-color: #f2f2f2;
+    background-color: #87CEEB;
     font-size: larger;
+    color: white;
 }
 .feedB{
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.feedback{
-    background-color: #87CEEB;
-}
 .addRouteBtn{
     margin-bottom: 1em;
     margin-top: 1em;
-    /* margin-left: 47rem; */
 }
 .myAdd{
     background-color: #D79922;
@@ -77,8 +74,13 @@ body{
     margin-right: 1em;
     margin-top: 1em;
     padding-right: 36rem;
+    color: white;
+    font-weight: bold;
+
 }
 .days{
     margin-left: 2em;
     margin-top: 1em;
+    color: white;
+    font-weight: bold;
 }
