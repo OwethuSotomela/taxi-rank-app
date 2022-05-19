@@ -15,7 +15,9 @@ document.addEventListener('alpine:init', () => {
                     trips: 0,
                     taxis: 4,
                     overallTotal: 0,
-                    profit: 0
+                    profit: 0,
+                    feedback: '',
+                    
                 },
                 {
                     destination: 'Parow',
@@ -25,7 +27,9 @@ document.addEventListener('alpine:init', () => {
                     trips: 0,
                     taxis: 4,
                     overallTotal: 0,
-                    profit: 0
+                    profit: 0,
+                    feedback: '',
+
                 },
                 {
                     destination: 'Woodstock',
@@ -35,7 +39,9 @@ document.addEventListener('alpine:init', () => {
                     trips: 0,
                     taxis: 4,
                     overallTotal: 0,
-                    profit: 0
+                    profit: 0,
+                    feedback: '',
+
                 },
             ]).as('Taxi Rank Details'),
             addRoute(stop, fare) {
@@ -56,7 +62,7 @@ document.addEventListener('alpine:init', () => {
                 if (destination.queue >= 7) {
 
                     setTimeout(() => {
-                        this.feedback = this.taxiFull
+                        destination.feedback = this.taxiFull
                     }, 0000)
                 }
 
@@ -67,7 +73,7 @@ document.addEventListener('alpine:init', () => {
                     destination.queue--
                 } else {
                     setTimeout(() => {
-                        destination.feedback = destination.invalidAction
+                        destination.feedback = this.invalidAction
                     }, 0000)
                 }
 
@@ -76,7 +82,7 @@ document.addEventListener('alpine:init', () => {
 
                 if (destination.queue <= 6) {
                     setTimeout(() => {
-                        this.feedback = this.taxiNotFull
+                        destination.feedback = this.taxiNotFull
                     })
                 } else {
                     destination.trips++
@@ -91,7 +97,6 @@ document.addEventListener('alpine:init', () => {
             taxiFull: 'Mini taxi full & can leave the rank',
             taxiNotFull: 'Taxi cannot leave the rank unless full',
             invalidAction: 'Invalid action',
-            feedback: '',
 
             getTotalFare(destination) {
                 let newTotal = destination.limit * destination.fare

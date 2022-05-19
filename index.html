@@ -24,8 +24,6 @@
 
                 <div class="col-12" id="allData" x-data="rank">
 
-                    <!-- Wednesday -->
-
                     <div x-data="{show: false}" class="AddRoute">
                         <div class="myAdd">
                             <label class="days">Day's profit:</label>
@@ -43,16 +41,6 @@
                         </div>
                     </div>
 
-                    <!-- Down here  -->
-
-                    <!-- Monday  -->
-                    <div class="feedB">
-                        <template x-for="rank in ranks">
-                            <span x-text="feedback" class="today"></span>
-                        </template>
-                    </div>
-                    <!-- end  -->
-
                     <table class="taxiRank">
                         <tr>
                             <th>Departure</th>
@@ -62,6 +50,7 @@
                             <th>Taxi Fare</th>
                             <th>Total Fare</th>
                             <th>Taxis Available</th>
+                            <th>Notice Board</th>
                             <th>Taxi Actions</th>
                         </tr>
                         <template x-for="rank in ranks">
@@ -77,6 +66,7 @@
                                 <td x-text="'R' + rank.fare"></td>
                                 <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                                 <td x-text="rank.taxis"></td>
+                                <td x-text="rank.feedback"></td>
                                 <td>
                                     <button @click="leave(rank)">Leave</button>
                                 </td>
