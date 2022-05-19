@@ -12,7 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-    
+
     <script src="./js/app.js"></script>
 </head>
 
@@ -23,14 +23,12 @@
                 <h1>Taxi Rank App</h1>
 
                 <div class="col-12" id="allData" x-data="rank">
-                    
-                    <!-- Wednesday -->
 
                     <div x-data="{show: false}" class="AddRoute">
                         <div class="myAdd">
                             <label class="days">Day's profit:</label>
                             <span x-text="'R' + madeADay().toFixed(2)" class="daysProfit"></span>
-                            <button @click="show=!show" class="addRouteBtn">Add route</button> 
+                            <button @click="show=!show" class="addRouteBtn">Add route</button>
                         </div>
 
                         <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
@@ -43,16 +41,6 @@
                         </div>
                     </div>
 
-                    <!-- Down here  -->
-
-                    <!-- Monday  -->
-                    <div class="feedB">
-                        <template x-for="rank in ranks">
-                            <span x-text="feedback" class="today"></span>
-                        </template>
-                    </div>
-                    <!-- end  -->
-
                     <table class="taxiRank">
                         <tr>
                             <th>Departure</th>
@@ -62,6 +50,7 @@
                             <th>Taxi Fare</th>
                             <th>Total Fare</th>
                             <th>Taxis Available</th>
+                            <th>Notice Board</th>
                             <th>Taxi Actions</th>
                         </tr>
                         <template x-for="rank in ranks">
@@ -77,6 +66,7 @@
                                 <td x-text="'R' + rank.fare"></td>
                                 <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                                 <td x-text="rank.taxis"></td>
+                                <td x-text="rank.feedback"></td>
                                 <td>
                                     <button @click="leave(rank)">Leave</button>
                                 </td>
