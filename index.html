@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <title>Taxi Rank-App</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
@@ -21,23 +22,19 @@
                 <h1>Taxi Rank App</h1>
 
                 <div class="col-12" x-data="rank">
-
                     <!-- Wednesday -->
 
                     <div x-data="{show: false}" class="AddRoute">
                         <button @click="show=!show" class="addRouteBtn">Add route</button>
 
                         <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
-
                             <label>Destination</label>
-                            <input x-model="userDest" type="text">
+                            <input x-model="userDest" type="text" />
                             <label>Fare: <strong>R</strong></label>
-                            <input x-model="userAmount" type="number">
+                            <input x-model="userAmount" type="number" />
 
                             <button @click="addRoute(userDest, userAmount)">Add</button>
-
                         </div>
-
                     </div>
 
                     <!-- Down here  -->
@@ -80,9 +77,7 @@
                             </tr>
                         </template>
                     </table>
-
                 </div>
-
             </div>
         </div>
     </div>

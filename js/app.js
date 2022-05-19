@@ -1,12 +1,12 @@
 document.addEventListener('alpine:init', () => {
-    Alpine.data('rank', () => {
+    Alpine.data('rank', function() {
         return {
             init() {
                 // console.log('Hi Oz');
             },
             open: false,
             mainRank: 'Cape Town',
-            ranks: [
+            ranks: this.$persist([
                 {
                     destination: 'Belhar',
                     limit: 7,
@@ -37,7 +37,7 @@ document.addEventListener('alpine:init', () => {
                     overallTotal: 0
 
                 },
-            ],
+            ]),
             addRoute(stop, fare) {
 
                 this.ranks.push({
@@ -50,11 +50,9 @@ document.addEventListener('alpine:init', () => {
                     overallTotal: 0
                 })
             },
-
             queueInLine(destination) {
 
                 destination.queue++
-
                 if (destination.queue >= 7) {
 
                     setTimeout(() => {
