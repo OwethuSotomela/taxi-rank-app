@@ -62,7 +62,8 @@ body{
     padding-bottom: 2px;
 }
 #allData{
-    background-color: #87CEEB;
+    /* background-image: url('../images/tr10.jpeg'); */
+    /* background-color: #87CEEB; */
     padding-bottom: 2em;
 }
 .daysProfit{
