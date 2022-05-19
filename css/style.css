@@ -62,15 +62,13 @@ body{
     padding-bottom: 2px;
 }
 #allData{
-    /* background-image: url('../images/tr10.jpeg'); */
-    /* background-color: #87CEEB; */
     padding-bottom: 2em;
 }
 .daysProfit{
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 1em;
-    padding-right: 36rem;
+    padding-right: 37rem;
     color: white;
     font-weight: bold;
 
