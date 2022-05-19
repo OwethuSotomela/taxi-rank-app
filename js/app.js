@@ -40,7 +40,7 @@ document.addEventListener('alpine:init', () => {
             ],
             addRoute(stop, fare) {
 
-                ranks.push({
+                this.ranks.push({
                     destination: stop,
                     limit: 7,
                     queue: 0,
@@ -49,7 +49,6 @@ document.addEventListener('alpine:init', () => {
                     taxis: 4,
                     overallTotal: 0
                 })
-                console.log(stop, fare)
             },
 
             queueInLine(destination) {
@@ -100,7 +99,6 @@ document.addEventListener('alpine:init', () => {
                 console.log(newTotal)
                 destination.overallTotal += newTotal
             },
-
         }
     })
 })
