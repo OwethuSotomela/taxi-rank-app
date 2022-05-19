@@ -28,6 +28,8 @@
 
                     <div x-data="{show: false}" class="AddRoute">
                         <div class="myAdd">
+                            <label class="days">Day's profit:</label>
+                            <span x-text="'R' + madeADay().toFixed(2)" class="daysProfit"></span>
                             <button @click="show=!show" class="addRouteBtn">Add route</button> 
                         </div>
 
