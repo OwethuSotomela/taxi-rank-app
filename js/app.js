@@ -1,5 +1,5 @@
 document.addEventListener('alpine:init', () => {
-    Alpine.data('rank', function() {
+    Alpine.data('rank', function () {
         return {
             init() {
                 // console.log('Hi Oz');
@@ -14,8 +14,8 @@ document.addEventListener('alpine:init', () => {
                     fare: 22,
                     trips: 0,
                     taxis: 4,
-                    overallTotal: 0
-
+                    overallTotal: 0,
+                    profit: 0
                 },
                 {
                     destination: 'Parow',
@@ -24,8 +24,8 @@ document.addEventListener('alpine:init', () => {
                     fare: 18,
                     trips: 0,
                     taxis: 4,
-                    overallTotal: 0
-
+                    overallTotal: 0,
+                    profit: 0
                 },
                 {
                     destination: 'Woodstock',
@@ -34,8 +34,8 @@ document.addEventListener('alpine:init', () => {
                     fare: 12,
                     trips: 0,
                     taxis: 4,
-                    overallTotal: 0
-
+                    overallTotal: 0,
+                    profit: 0
                 },
             ]).as('Taxi Rank Details'),
             addRoute(stop, fare) {
@@ -83,6 +83,7 @@ document.addEventListener('alpine:init', () => {
                     destination.taxis--
                     destination.queue -= destination.limit
                     this.getTotalFare(destination)
+                    this.madeADay(destination)
                 }
 
             },
@@ -94,8 +95,10 @@ document.addEventListener('alpine:init', () => {
 
             getTotalFare(destination) {
                 let newTotal = destination.limit * destination.fare
-                console.log(newTotal)
                 destination.overallTotal += newTotal
+            },
+            madeADay() {
+                return _.sumBy(this.ranks, o => o.overallTotal)
             },
         }
     })
