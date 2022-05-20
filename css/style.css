@@ -68,7 +68,7 @@ body{
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 1em;
-    padding-right: 37rem;
+    padding-right: 15rem;
     color: white;
     font-weight: bold;
 
@@ -78,4 +78,7 @@ body{
     margin-top: 1em;
     color: white;
     font-weight: bold;
+}
+h3{
+    margin-right: 15em;
 }
