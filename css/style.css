@@ -49,7 +49,7 @@ body{
 .addRouteBtn{
     margin-bottom: 1em;
     margin-top: 1em;
-    margin-left: 18em;
+    margin-left: 23em;
 }
 .myAdd{
     background-color: #D79922;
@@ -69,7 +69,7 @@ body{
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 1em;
-    padding-right: 15rem;
+    padding-right: 20rem;
     color: white;
     font-weight: bold;
 
@@ -80,6 +80,3 @@ body{
     color: white;
     font-weight: bold;
 }
-/* h3{
-    margin-right: 15em;
-} */
