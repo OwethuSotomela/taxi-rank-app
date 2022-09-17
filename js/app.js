@@ -9,7 +9,7 @@ document.addEventListener('alpine:init', () => {
             ranks: this.$persist([
                 {
                     destination: 'Belhar',
-                    limit: 7,
+                    limit: 2,
                     queue: 0,
                     fare: 22,
                     trips: 0,
@@ -17,7 +17,7 @@ document.addEventListener('alpine:init', () => {
                     overallTotal: 0,
                     profit: 0,
                     feedback: '',
-                    
+
                 },
                 {
                     destination: 'Parow',
@@ -49,6 +49,7 @@ document.addEventListener('alpine:init', () => {
                 this.ranks.push({
                     destination: stop,
                     limit: 7,
+                    taxiLimit: 1,
                     queue: 0,
                     fare: fare,
                     trips: 0,
@@ -80,17 +81,31 @@ document.addEventListener('alpine:init', () => {
             },
             leave(destination) {
 
+                console.log(destination)
+                console.log(destination.taxi)
+
                 if (destination.queue <= 6) {
                     setTimeout(() => {
                         destination.feedback = this.taxiNotFull
                     })
-                } else {
+                } 
+                else 
+                if
+                    (destination.taxis == 0) {
+                    destination.feedback = "Taxi not available"
+                }
+
+                else {
                     destination.trips++
-                    destination.taxis--
+                    destination.taxis --
                     destination.queue -= destination.limit
                     this.getTotalFare(destination)
                     this.madeADay(destination)
                 }
+                // here 
+                // if(destination.taxiLimit <= 0){
+                //     destination.feedback = "There are no taxis to this route at the moment"
+                // }
 
             },
 
