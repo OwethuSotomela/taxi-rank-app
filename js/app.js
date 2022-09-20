@@ -62,9 +62,10 @@ document.addEventListener('alpine:init', () => {
                 destination.queue++
                 if (destination.queue >= 7) {
 
+                    destination.feedback = this.taxiFull
                     setTimeout(() => {
-                        destination.feedback = this.taxiFull
-                    }, 0000)
+                        destination.feedback = ""
+                    }, 3000)
                 }
 
             },
@@ -73,45 +74,43 @@ document.addEventListener('alpine:init', () => {
                 if (destination.queue >= 1) {
                     destination.queue--
                 } else {
+                    destination.feedback = this.invalidAction
                     setTimeout(() => {
-                        destination.feedback = this.invalidAction
+                        destination.feedback = ""
                     }, 0000)
                 }
 
             },
             leave(destination) {
 
-                console.log(destination)
-                console.log(destination.taxi)
-
                 if (destination.queue <= 6) {
+                    destination.feedback = this.taxiNotFull
                     setTimeout(() => {
-                        destination.feedback = this.taxiNotFull
+                        destination.feedback = ""
                     })
-                } 
-                else 
-                if
-                    (destination.taxis == 0) {
-                    destination.feedback = "Taxi not available"
-                }
-
-                else {
+                } else if (destination.taxis == 0) {
+                    destination.feedback = this.notAvailable
+                    setTimeout(() => {
+                        destination.feedback = ""
+                    }, 3000)
+                } else {
                     destination.trips++
-                    destination.taxis --
+                    destination.taxis--
                     destination.queue -= destination.limit
                     this.getTotalFare(destination)
                     this.madeADay(destination)
                 }
-                // here 
-                // if(destination.taxiLimit <= 0){
-                //     destination.feedback = "There are no taxis to this route at the moment"
-                // }
-
+            },
+            addTaxi(taxi) {
+                if (taxi.taxis <= 3) {
+                    taxi.taxis++
+                }
             },
 
             taxiFull: 'Mini taxi full & can leave the rank',
             taxiNotFull: 'Taxi cannot leave the rank unless full',
             invalidAction: 'Invalid action',
+            notAvailable: 'Taxis not available',
 
             getTotalFare(destination) {
                 let newTotal = destination.limit * destination.fare
