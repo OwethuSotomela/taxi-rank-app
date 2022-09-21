@@ -19,66 +19,59 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <!-- <h1>Taxi Rank App</h1> -->
+            <div class="col-12" id="allData" x-data="rank">
+                <h1>Taxi Rank App</h1>
 
-                <div class="col-12" id="allData" x-data="rank">
-
-                    <div x-data="{show: false}" class="AddRoute">
-                        <div class="myAdd">
-                            <label class="days">Day's profit:</label>
-                            <span x-text="'R' + madeADay().toFixed(2)" class="daysProfit"></span>
-                            <h3>Taxi Rank App</h3>
-                            <button @click="show=!show" class="addRouteBtn">Add route</button>
-                        </div>
-
-                        <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
-                            <label>Destination</label>
-                            <input x-model="userDest" type="text" />
-                            <label>Fare: <strong>R</strong></label>
-                            <input x-model="userAmount" type="number" />
-
-                            <button @click="addRoute(userDest, userAmount)">Add</button>
-                        </div>
+                <div x-data="{show: false}" class="AddRoute">
+                    <div class="myAdd">
+                        <label class="days">Day's profit:</label>
+                        <span x-text="'R' + madeADay().toFixed(2)" class="daysProfit"></span>
+                        <button @click="show=!show" class="addRouteBtn">Add route</button>
                     </div>
 
-                    <table class="taxiRank">
-                        <tr>
-                            <th>Departure</th>
-                            <th>Destination</th>
-                            <th>Passenger Actions</th>
-                            <th>Taxi Trips</th>
-                            <th>Taxi Fare</th>
-                            <th>Total Fare</th>
-                            <th>Taxis Available</th>
-                            <th>Notice Board</th>
-                            <th>Taxi Actions</th>
-                        </tr>
-                        <template x-for="rank in ranks">
-                            <tr>
-                                <td x-text="mainRank"></td>
-                                <td x-text="rank.destination"></td>
-                                <td>
-                                    <button @click="queueInLine(rank)">+</button>
-                                    <span x-text="rank.queue"></span>
-                                    <button @click="leaveQueue(rank)">-</button>
-                                </td>
-                                <td x-text="rank.trips"></td>
-                                <td x-text="'R' + rank.fare"></td>
-                                <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
-                                <td x-text="rank.taxis"></td>
-                                <td x-text="rank.feedback"></td>
-                                <td>
-                                    <button @click="leave(rank)">Leave</button>
-                                    <button @click="addTaxi(rank)">Add</button>
-                                </td>
-                                <!-- <td>
-                                    <button @click="addTaxi(rank)">Add</button>
-                                </td> -->
-                            </tr>
-                        </template>
-                    </table>
+                    <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
+                        <label>Destination</label>
+                        <input x-model="userDest" type="text" />
+                        <label>Fare: <strong>R</strong></label>
+                        <input x-model="userAmount" type="number" />
+
+                        <button @click="addRoute(userDest, userAmount)">Add</button>
+                    </div>
                 </div>
+
+                <table class="taxiRank">
+                    <tr>
+                        <th>Departure</th>
+                        <th>Destination</th>
+                        <th>Passenger Actions</th>
+                        <th>Taxi Trips</th>
+                        <th>Taxi Fare</th>
+                        <th>Total Fare</th>
+                        <th>Taxis Available</th>
+                        <th>Notice Board</th>
+                        <th>Taxi Actions</th>
+                    </tr>
+                    <template x-for="rank in ranks">
+                        <tr>
+                            <td x-text="mainRank"></td>
+                            <td x-text="rank.destination"></td>
+                            <td>
+                                <button @click="queueInLine(rank)">+</button>
+                                <span x-text="rank.queue"></span>
+                                <button @click="leaveQueue(rank)">-</button>
+                            </td>
+                            <td x-text="rank.trips"></td>
+                            <td x-text="'R' + rank.fare"></td>
+                            <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
+                            <td x-text="rank.taxis"></td>
+                            <td x-text="rank.feedback"></td>
+                            <td>
+                                <button @click="leave(rank)">Leave</button>
+                                <button @click="addTaxi(rank)">Add taxi</button>
+                            </td>
+                        </tr>
+                    </template>
+                </table>
             </div>
         </div>
     </div>

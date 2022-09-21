@@ -1,22 +1,24 @@
-h3{
-    margin-right: 15em;
+h1 {
+    margin-right: 0;
     text-align: center;
     justify-content: center;
 }
 
-body{
-    background-image: url('../images/tr10.jpeg');
+body {
+    /* background-image: url('../images/tr10.jpeg'); */
     background-size: cover;
     background-repeat: no-repeat;
     padding: 20px;
 }
-.col-12{
+
+.col-12 {
     text-align: center;
     /* background-color: bisque; */
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+    padding: 10px;
 }
+
 .taxiRank td,
 .taxiRank th {
     border: 1px solid white;
@@ -39,7 +41,8 @@ body{
     background-color: #D79922;
     color: white;
 }
-.taxiRank{
+
+.taxiRank {
     background-color: #ddd;
     display: flex;
     justify-content: center;
@@ -47,32 +50,37 @@ body{
     align-items: center;
 }
 
-.today{
+.today {
     background-color: #87CEEB;
     font-size: larger;
     color: white;
 }
-.addRouteBtn{
+
+.addRouteBtn {
     margin-bottom: 1em;
     margin-top: 1em;
-    margin-left: 15em;
+    margin-left: 49em;
 }
-.myAdd{
+
+.myAdd {
     background-color: #D79922;
     margin-bottom: 2em;
     display: flex;
 }
-.myRoute{
+
+.myRoute {
     background-color: #ddd;
     height: 2em;
     padding-top: 1em;
     padding-bottom: 2px;
     margin-bottom: 10px;
 }
-#allData{
+
+#allData {
     padding-bottom: 2em;
 }
-.daysProfit{
+
+.daysProfit {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 1em;
@@ -81,7 +89,8 @@ body{
     font-weight: bold;
 
 }
-.days{
+
+.days {
     margin-left: 2em;
     margin-top: 1em;
     color: white;
