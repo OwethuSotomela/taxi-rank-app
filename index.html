@@ -29,14 +29,15 @@
                         <button @click="show=!show" class="addRouteBtn">Add route</button>
                     </div>
 
-                    <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute">
-                        <label>Destination</label>
-                        <input x-model="userDest" type="text" />
+                    <div x-data="{userDest: '', userAmount: '' }" x-show="show" class="myRoute add-destination-form">
+                        <label>Destination:</label>
+                        <input x-model="userDest" type="text" placeholder="e.g. Parow" />
+    
                         <label>Fare: <strong>R</strong></label>
-                        <input x-model="userAmount" type="number" />
+                        <input x-model="userAmount" type="number" placeholder="e.g. 20" />
 
                         <button @click="addRoute(userDest, userAmount)">Add</button>
-                    </div>
+                        </div>
                 </div>
 
             <div style="overflow-x:auto;">
