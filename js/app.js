@@ -45,18 +45,36 @@ document.addEventListener('alpine:init', () => {
                 },
             ]).as('Taxi Rank Details'),
             addRoute(stop, fare) {
+                if (!stop || !fare) {
+                    alert("Please enter both destination and fare.");
+                return;
+                }
+
+                if (stop.trim().toLowerCase() === this.mainRank.trim().toLowerCase()) {
+                    alert("Destination cannot be the same as the departure point.");
+                return;
+                }
+
+    //prevent adding a destination that already exists
+                const exists = this.ranks.some(r => r.destination.toLowerCase() === stop.trim().toLowerCase());
+                if (exists) {
+                    alert("This destination already exists.");
+                return;
+                }
 
                 this.ranks.push({
-                    destination: stop,
-                    limit: 7,
-                    taxiLimit: 1,
-                    queue: 0,
-                    fare: fare,
-                    trips: 0,
-                    taxis: 4,
-                    overallTotal: 0
-                })
-            },
+                destination: stop,
+                limit: 7,
+                taxiLimit: 1,
+                queue: 0,
+                fare: fare,
+                trips: 0,
+                taxis: 4,
+                overallTotal: 0,
+                profit: 0,
+                feedback: ''
+                });
+                },
             queueInLine(destination) {
 
                 destination.queue++
