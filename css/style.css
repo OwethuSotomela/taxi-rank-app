@@ -97,6 +97,16 @@ body {
     font-weight: bold;
 }
 
+.add-destination-form {
+  position: relative; 
+  z-index: 10;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1em;
+}
+
 @media (max-width: 768px) {
   .taxiRank {
     display: block;
