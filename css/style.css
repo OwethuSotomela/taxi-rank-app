@@ -98,13 +98,22 @@ body {
 }
 
 .add-destination-form {
-  position: relative; 
-  z-index: 10;
-  background-color: white;
-  padding: 1em;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 1em;
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-width: 300px;
+}
+.add-destination-form input,
+.add-destination-form button {
+    padding: 0.5em;
+    font-size: 1rem;
 }
 
 @media (max-width: 768px) {
