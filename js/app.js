@@ -140,6 +140,12 @@ document.addEventListener('alpine:init', () => {
             madeADay() {
                 return _.sumBy(this.ranks, r => r.overallTotal)
             },
+            estimateWaitTime(rank) {
+                const passengersRemaining = rank.limit - rank.queue;
+                const avgSecondsPerPassenger = 30; // adjust as needed
+                const waitTime = passengersRemaining * avgSecondsPerPassenger;
+                return `${Math.floor(waitTime / 60)}m ${waitTime % 60}s`;
+            },
         }
     })
 })
