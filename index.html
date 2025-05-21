@@ -79,6 +79,7 @@
                         <th>Taxi Trips</th>
                         <th>Taxi Fare</th>
                         <th>Total Fare</th>
+                        <th>Estimated Waiting Time</>
                         <th>Taxis Available</th>
                         <th>Notice Board</th>
                         <th>Taxi Actions</th>
@@ -94,6 +95,7 @@
                             </td>
                             <td x-text="rank.trips"></td>
                             <td x-text="'R' + rank.fare"></td>
+                            <td x-text="estimateWaitTime(rank)"></td>
                             <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                             <td x-text="rank.taxis"></td>
                             <td x-text="rank.feedback"></td>
