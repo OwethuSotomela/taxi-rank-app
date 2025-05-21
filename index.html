@@ -76,9 +76,9 @@
                         <th>Departure</th>
                         <th>Destination</th>
                         <th>Passenger Actions</th>
+                        <th>Estimated Waiting Time</>
                         <th>Taxi Trips</th>
                         <th>Taxi Fare</th>
-                        <th>Estimated Waiting Time</>
                         <th>Total Fare</th>
                         <th>Taxis Available</th>
                         <th>Notice Board</th>
@@ -93,9 +93,9 @@
                                 <span x-text="rank.queue"></span>
                                 <button @click="leaveQueue(rank)">-</button>
                             </td>
+                            <td x-text="estimateWaitTime(rank)"></td>
                             <td x-text="rank.trips"></td>
                             <td x-text="'R' + rank.fare"></td>
-                            <td x-text="estimateWaitTime(rank)"></td>
                             <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
                             <td x-text="rank.taxis"></td>
                             <td x-text="rank.feedback"></td>
