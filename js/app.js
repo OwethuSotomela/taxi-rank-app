@@ -1,11 +1,13 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('rank', function () {
         return {
-            init() {
-                // console.log('Hi Oz');
-            },
-            open: false,
-            mainRank: 'Cape Town',
+                init() {
+                    // console.log('Hi Oz');
+                },
+                open: false,
+                newStop: '',
+                newFare: '',
+                mainRank: 'Cape Town',
             ranks: this.$persist([
                 {
                     destination: 'Belhar',
@@ -17,7 +19,7 @@ document.addEventListener('alpine:init', () => {
                     overallTotal: 0,
                     profit: 0,
                     feedback: '',
-
+                    
                 },
                 {
                     destination: 'Parow',
