@@ -117,7 +117,7 @@ document.addEventListener('alpine:init', () => {
                 } else {
                     destination.trips++
                     destination.taxis--
-                    destination.queue = 0 // reset to zero instead of subtracting
+                    destination.queue = 0
                     this.getTotalFare(destination)
                     this.madeADay(destination)
                 }
