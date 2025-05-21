@@ -104,13 +104,12 @@ document.addEventListener('alpine:init', () => {
 
             },
             leave(destination) {
-
-                if (destination.queue <= 6) {
+                if (destination.queue < destination.limit) {
                     destination.feedback = this.taxiNotFull
                     setTimeout(() => {
                         destination.feedback = ""
-                    })
-                } else if (destination.taxis == 0) {
+                    }, 3000)
+                } else if (destination.taxis === 0) {
                     destination.feedback = this.notAvailable
                     setTimeout(() => {
                         destination.feedback = ""
@@ -118,11 +117,11 @@ document.addEventListener('alpine:init', () => {
                 } else {
                     destination.trips++
                     destination.taxis--
-                    destination.queue -= destination.limit
+                    destination.queue = 0 // reset to zero instead of subtracting
                     this.getTotalFare(destination)
                     this.madeADay(destination)
                 }
-            },
+            }, 
             addTaxi(taxi) {
                 if (taxi.taxis <= 3) {
                     taxi.taxis++
