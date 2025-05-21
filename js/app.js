@@ -141,10 +141,19 @@ document.addEventListener('alpine:init', () => {
                 return _.sumBy(this.ranks, r => r.overallTotal)
             },
             estimateWaitTime(rank) {
-                const passengersRemaining = rank.limit - rank.queue;
-                const avgSecondsPerPassenger = 30; // adjust as needed
-                const waitTime = passengersRemaining * avgSecondsPerPassenger;
-                return `${Math.floor(waitTime / 60)}m ${waitTime % 60}s`;
+                if (rank.queue >= rank.limit) {
+                    return 'Taxi is full';
+                }
+            
+                const peopleNeeded = rank.limit - rank.queue;
+                const secondsPerPerson = 30; // average time it takes for a new passenger to join
+            
+                const totalSeconds = peopleNeeded * secondsPerPerson;
+            
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+            
+                return `${minutes}m ${seconds}s`;
             },
         }
     })
