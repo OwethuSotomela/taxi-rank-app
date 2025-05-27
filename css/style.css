@@ -1,145 +1,79 @@
-h1 {
-    margin-right: 0;
-    text-align: center;
-    justify-content: center;
-}
-
 body {
-    /* background-image: url('../images/tr10.jpeg'); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #f4f4f4;
+  color: #333;
 }
 
-.col-12 {
-    text-align: center;
-    /* background-color: bisque; */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.taxiRank td,
-.taxiRank th {
-    border: 1px solid white;
-    padding-left: 20px;
-    padding-right: 20px;
+.add-section {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.taxiRank tr:nth-child(even) {
-    background-color: #f2f2f2;
+.add-section .form {
+  margin-top: 1rem;
 }
 
-.taxiRank tr:hover {
-    background-color: #ddd;
+input {
+  padding: 0.5rem;
+  margin: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.taxiRank th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #D79922;
-    color: white;
+button {
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.taxiRank {
-    width: 100%;
-    border-collapse: collapse;
+button:hover {
+  background-color: #005fa3;
 }
 
-.table-wrapper {
-    overflow-x: auto;
-    width: 100%;
+.rank-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
-.today {
-    background-color: #87CEEB;
-    font-size: larger;
-    color: white;
+.rank-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
 
-.addRouteBtn {
-    margin: 1em auto;
-    display: block;
+.rank-card h2 {
+  margin-top: 0;
 }
 
-.myAdd {
-    background-color: #D79922;
-    margin-bottom: 2em;
-    display: flex;
+.actions {
+  margin-top: 1rem;
 }
 
-.myRoute {
-    background-color: #ddd;
-    height: 2em;
-    padding-top: 1em;
-    padding-bottom: 2px;
-    margin-bottom: 10px;
+.feedback {
+  color: #e63946;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
 
-#allData {
-    padding-bottom: 2em;
-}
-
-.daysProfit {
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-top: 1em;
-    padding-right: 15rem;
-    color: white;
-    font-weight: bold;
-}
-
-.days {
-    margin-left: 2em;
-    margin-top: 1em;
-    color: white;
-    font-weight: bold;
-}
-
-.add-destination-form {
-    position: relative;
-    z-index: 10;
-    background-color: #fff;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    max-width: 300px;
-}
-.add-destination-form input,
-.add-destination-form button {
-    padding: 0.5em;
-    font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-  .taxiRank {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .addRouteBtn {
-    margin: 1em auto;
-    display: block;
-  }
-
-  .myAdd {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .daysProfit, .days {
-    padding-right: 0;
-    margin: 0.5em 0;
-  }
-
-  .myRoute input {
-    width: 100%;
-    margin-bottom: 0.5em;
-  }
+.summary {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
