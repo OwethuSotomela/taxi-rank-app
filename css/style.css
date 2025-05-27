@@ -1,14 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 1rem;
-  background: #f4f4f4;
-  color: #333;
+  padding: 1.5rem;
+  background: #f8f8f8;
 }
 
-header {
+h1 {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .add-section {
@@ -16,7 +14,7 @@ header {
   margin-bottom: 2rem;
 }
 
-.add-section .form {
+.modal {
   margin-top: 1rem;
 }
 
@@ -30,7 +28,7 @@ input {
 button {
   padding: 0.5rem 1rem;
   margin: 0.2rem;
-  background-color: #0077cc;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
@@ -38,42 +36,37 @@ button {
 }
 
 button:hover {
-  background-color: #005fa3;
+  background-color: #0056b3;
 }
 
-.rank-list {
+.routes {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center;
+  gap: 1rem;
 }
 
-.rank-card {
+.route-card {
   background: white;
-  border: 1px solid #ddd;
   padding: 1rem;
-  border-radius: 8px;
-  width: 250px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.05);
-}
-
-.rank-card h2 {
-  margin-top: 0;
-}
-
-.actions {
-  margin-top: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 260px;
 }
 
 .feedback {
-  color: #e63946;
   font-weight: bold;
+  color: #c0392b;
   margin-top: 0.5rem;
+}
+
+.buttons {
+  margin-top: 1rem;
 }
 
 .summary {
   text-align: center;
-  margin-top: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
+  margin-top: 2rem;
 }
