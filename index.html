@@ -1,56 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" x-data="rank" x-init="init">
+<html lang="en" x-data="rank" x-init="init()" x-cloak>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxi Rank Manager</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Taxi Rank App</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Taxi Rank: <span x-text="mainRank"></span></h1>
-  </header>
 
-  <main>
-    <section class="add-section">
-      <button @click="open = !open" class="add-button">+ Add Route</button>
+    <div class="container">
+        <h1>Taxi Rank - {{ mainRank }}</h1>
 
-      <div x-show="open" class="modal" @click.away="open = false">
-        <input type="text" placeholder="New Stop" x-model="newStop" />
-        <input type="number" placeholder="Fare" x-model="newFare" />
-        <button @click="addRoute(newStop, parseFloat(newFare))">Add</button>
-      </div>
-    </section>
+        <button @click="open = true" class="add-btn">+ Add Route</button>
 
-    <section class="rank-list">
-      <template x-for="destination in ranks" :key="destination.destination">
-        <div class="rank-card">
-          <h2 x-text="destination.destination"></h2>
-          <p>Queue: <span x-text="destination.queue"></span> / <span x-text="destination.limit"></span></p>
-          <p>Fare: R<span x-text="destination.fare"></span></p>
-          <p>Trips: <span x-text="destination.trips"></span></p>
-          <p>Taxis Available: <span x-text="destination.taxis"></span></p>
-          <p>Total Collected: R<span x-text="destination.overallTotal"></span></p>
-          <p x-show="destination.feedback" class="feedback" x-text="destination.feedback"></p>
-
-          <div class="actions">
-            <button @click="queueInLine(destination)">Queue</button>
-            <button @click="leaveQueue(destination)">Leave Queue</button>
-            <button @click="leave(destination)">Taxi Leave</button>
-            <button @click="addTaxi(destination)">Add Taxi</button>
-          </div>
-
-          <p>Wait Time: <span x-text="estimateWaitTime(destination)"></span></p>
+        <!-- Modal -->
+        <div class="modal" x-show="open" x-transition @click.away="open = false">
+            <div class="modal-content">
+                <h2>Add New Route</h2>
+                <input type="text" placeholder="Destination" x-model="newStop" />
+                <input type="number" placeholder="Fare" x-model="newFare" />
+                <div class="modal-actions">
+                    <button @click="addRoute(newStop, parseFloat(newFare))">Add</button>
+                    <button @click="open = false">Cancel</button>
+                </div>
+            </div>
         </div>
-      </template>
-    </section>
 
-    <section class="summary">
-      <h3>Total Income: R<span x-text="madeADay()"></span></h3>
-    </section>
-  </main>
-<script defer src="./js/app.js"></script>
+        <!-- Rank Cards -->
+        <div class="rank-cards">
+            <template x-for="destination in ranks" :key="destination.destination">
+                <div class="rank-card">
+                    <h3 x-text="destination.destination"></h3>
+                    <p>Queue: <span x-text="destination.queue"></span> / <span x-text="destination.limit"></span></p>
+                    <p>Fare: R<span x-text="destination.fare"></span></p>
+                    <p>Taxis: <span x-text="destination.taxis"></span></p>
+                    <p>Trips: <span x-text="destination.trips"></span></p>
+                    <p>Total: R<span x-text="destination.overallTotal"></span></p>
+                    <p class="feedback" x-text="destination.feedback"></p>
+                    
+                    <div class="buttons">
+                        <button @click="queueInLine(destination)">Queue</button>
+                        <button @click="leaveQueue(destination)">Leave Queue</button>
+                        <button @click="leave(destination)">Taxi Leave</button>
+                        <button @click="addTaxi(destination)">Add Taxi</button>
+                    </div>
+                    <p class="wait-time">Est. Wait: <span x-text="estimateWaitTime(destination)"></span></p>
+                </div>
+            </template>
+        </div>
+
+        <div class="income">
+            <strong>Total Income Made Today: R</strong><span x-text="madeADay()"></span>
+        </div>
+    </div>
+  <script defer src="./js/app.js"></script>
 </body>
 </html>
