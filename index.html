@@ -2,54 +2,50 @@
 <html lang="en" x-data="rank" x-init="init">
 <head>
   <meta charset="UTF-8">
-  <title>Taxi Rank Management</title>
-  <link rel="stylesheet" href="./css/styles.css">
+  <title>Taxi Rank</title>
+  <link rel="stylesheet" href="./css/style.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>🚐 Taxi Rank: <span x-text="mainRank"></span></h1>
-  </header>
+  <h1>🚐 Taxi Rank: <span x-text="mainRank"></span></h1>
 
-  <main>
-    <section class="add-section">
-      <button @click="open = !open">+ Add New Route</button>
+  <section class="add-section">
+    <button @click="open = !open">+ Add Route</button>
 
-      <div x-show="open" class="form">
-        <input type="text" placeholder="Destination" x-model="newStop">
-        <input type="number" placeholder="Fare" x-model="newFare">
-        <button @click="addRoute(newStop, parseFloat(newFare))">Add</button>
-      </div>
-    </section>
+    <div x-show="open" class="modal">
+      <input type="text" placeholder="New Stop" x-model="newStop">
+      <input type="number" placeholder="Fare" x-model="newFare">
+      <button @click="addRoute(newStop, parseFloat(newFare))">Add Route</button>
+    </div>
+  </section>
 
-    <section class="rank-list">
-      <template x-for="(rank, index) in ranks" :key="index">
-        <div class="rank-card">
-          <h2 x-text="rank.destination"></h2>
-          <p>Fare: R<span x-text="rank.fare"></span></p>
-          <p>Queue: <span x-text="rank.queue"></span> / <span x-text="rank.limit"></span></p>
-          <p>Taxis Left: <span x-text="rank.taxis"></span></p>
-          <p>Total Trips: <span x-text="rank.trips"></span></p>
-          <p>Total Made: R<span x-text="rank.overallTotal"></span></p>
-          <p>Wait Estimate: <span x-text="estimateWaitTime(rank)"></span></p>
-          <p class="feedback" x-text="rank.feedback"></p>
+  <section class="routes">
+    <template x-for="(destination, index) in ranks" :key="index">
+      <div class="route-card">
+        <h2 x-text="destination.destination"></h2>
+        <p>Fare: R<span x-text="destination.fare"></span></p>
+        <p>Queue: <span x-text="destination.queue"></span> / <span x-text="destination.limit"></span></p>
+        <p>Taxis Left: <span x-text="destination.taxis"></span></p>
+        <p>Total Trips: <span x-text="destination.trips"></span></p>
+        <p>Total Made: R<span x-text="destination.overallTotal"></span></p>
+        <p>Estimated Wait: <span x-text="estimateWaitTime(destination)"></span></p>
+        <p class="feedback" x-text="destination.feedback"></p>
 
-          <div class="actions">
-            <button @click="queueInLine(rank)">Queue In</button>
-            <button @click="leaveQueue(rank)">Leave Queue</button>
-            <button @click="leave(rank)">Taxi Leave</button>
-            <button @click="addTaxi(rank)">Add Taxi</button>
-          </div>
+        <div class="buttons">
+          <button @click="queueInLine(destination)">Queue In</button>
+          <button @click="leaveQueue(destination)">Leave Queue</button>
+          <button @click="leave(destination)">Taxi Leave</button>
+          <button @click="addTaxi(destination)">Add Taxi</button>
         </div>
-      </template>
-    </section>
+      </div>
+    </template>
+  </section>
 
-    <section class="summary">
-      <h3>Total Made Across All Routes: R<span x-text="madeADay()"></span></h3>
-    </section>
-  </main>
+  <section class="summary">
+    <h3>Total Money Made: R<span x-text="madeADay()"></span></h3>
+  </section>
  <script defer src="./js/app.js"></script>
 </body>
 </html>
