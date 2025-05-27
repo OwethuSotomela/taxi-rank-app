@@ -1,115 +1,108 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
 body {
-  padding: 1rem;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background: #f9f9f9;
 }
 
-header h1 {
-  text-align: center;
-  margin-bottom: 1rem;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.add-section {
-  text-align: center;
-  margin-bottom: 2rem;
+h1 {
+    text-align: center;
 }
 
-.add-button {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.add-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
 
-.modal {
-  margin: 1rem auto;
-  background-color: white;
-  padding: 1rem;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.modal input {
-  display: block;
-  margin: 0.5rem 0;
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.modal button {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  margin-top: 0.5rem;
-}
-
-.rank-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+.rank-cards {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 1rem;
 }
 
 .rank-card {
-  background-color: white;
-  padding: 1rem;
-  width: 300px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.rank-card h2 {
-  margin-bottom: 0.5rem;
+.rank-card h3 {
+    margin-top: 0;
 }
 
-.rank-card p {
-  margin: 0.25rem 0;
+.buttons button {
+    margin: 0.2rem 0.3rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
 }
 
 .feedback {
-  color: red;
-  font-weight: bold;
+    color: red;
+    font-style: italic;
 }
 
-.actions {
-  margin-top: 0.5rem;
+.income {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
 }
 
-.actions button {
-  margin: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.summary {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1.2rem;
-}
-
-@media (max-width: 600px) {
-  .rank-list {
-    flex-direction: column;
+/* Modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
     align-items: center;
-  }
+    z-index: 1000;
+}
 
-  .rank-card {
-    width: 95%;
-  }
+.modal-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content input {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.4rem;
+}
+
+.modal-actions {
+    text-align: right;
+}
+
+.modal-actions button {
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+}
+
+/* Hide elements until Alpine is ready */
+[x-cloak] {
+    display: none !important;
 }
