@@ -1,171 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" x-data="rank" x-init="init()">
+<html lang="en" x-data="rank" x-init="init">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxi Rank</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Taxi Rank Management</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-800 p-4">
+<body>
 
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Taxi Rank - {{ mainRank }}</h1>
+  <header>
+    <h1>🚐 Taxi Rank: <span x-text="mainRank"></span></h1>
+  </header>
 
-    <!-- Add New Route Button -->
-    <button @click="open = true" class="bg-blue-600 text-white px-4 py-2 rounded mb-4">Add New Route</button>
+  <main>
+    <section class="add-section">
+      <button @click="open = !open">+ Add New Route</button>
 
-    <!-- Modal -->
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" x-show="open">
-      <div class="bg-white rounded-lg p-6 w-full max-w-md" @click.outside="open = false">
-        <h2 class="text-xl font-semibold mb-4">Add New Route</h2>
-        <input type="text" x-model="newStop" placeholder="Destination" class="w-full mb-2 px-3 py-2 border rounded" />
-        <input type="number" x-model="newFare" placeholder="Fare" class="w-full mb-4 px-3 py-2 border rounded" />
-        <div class="flex justify-end gap-2">
-          <button @click="open = false" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-          <button @click="addRoute(newStop, Number(newFare))" class="px-4 py-2 bg-blue-600 text-white rounded">Add</button>
-        </div>
+      <div x-show="open" class="form">
+        <input type="text" placeholder="Destination" x-model="newStop">
+        <input type="number" placeholder="Fare" x-model="newFare">
+        <button @click="addRoute(newStop, parseFloat(newFare))">Add</button>
       </div>
-    </div>
+    </section>
 
-    <!-- Routes Table -->
-    <div class="overflow-x-auto">
-      <table class="w-full bg-white shadow-md rounded overflow-hidden">
-        <thead class="bg-blue-100">
-          <tr>
-            <th class="text-left px-4 py-2">Destination</th>
-            <th class="text-left px-4 py-2">Fare</th>
-            <th class="text-left px-4 py-2">Queue</th>
-            <th class="text-left px-4 py-2">Taxis</th>
-            <th class="text-left px-4 py-2">Trips</th>
-            <th class="text-left px-4 py-2">Profit</th>
-            <th class="text-left px-4 py-2">ETA</th>
-            <th class="text-left px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <template x-for="(rank, index) in ranks" :key="index">
-            <tr class="border-t">
-              <td class="px-4 py-2" x-text="rank.destination"></td>
-              <td class="px-4 py-2" x-text="'R' + rank.fare"></td>
-              <td class="px-4 py-2" x-text="rank.queue"></td>
-              <td class="px-4 py-2" x-text="rank.taxis"></td>
-              <td class="px-4 py-2" x-text="rank.trips"></td>
-              <td class="px-4 py-2" x-text="'R' + rank.overallTotal"></td>
-              <td class="px-4 py-2" x-text="estimateWaitTime(rank)"></td>
-              <td class="px-4 py-2 space-x-1">
-                <button @click="queueInLine(rank)" class="px-2 py-1 bg-yellow-400 rounded">Queue</button>
-                <button @click="leaveQueue(rank)" class="px-2 py-1 bg-orange-400 rounded">Leave Q</button>
-                <button @click="leave(rank)" class="px-2 py-1 bg-green-500 text-white rounded">Depart</button>
-                <button @click="addTaxi(rank)" class="px-2 py-1 bg-purple-500 text-white rounded">+Taxi</button>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="8" class="text-red-500 px-4 py-2" x-text="rank.feedback"></td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-    </div>
+    <section class="rank-list">
+      <template x-for="(rank, index) in ranks" :key="index">
+        <div class="rank-card">
+          <h2 x-text="rank.destination"></h2>
+          <p>Fare: R<span x-text="rank.fare"></span></p>
+          <p>Queue: <span x-text="rank.queue"></span> / <span x-text="rank.limit"></span></p>
+          <p>Taxis Left: <span x-text="rank.taxis"></span></p>
+          <p>Total Trips: <span x-text="rank.trips"></span></p>
+          <p>Total Made: R<span x-text="rank.overallTotal"></span></p>
+          <p>Wait Estimate: <span x-text="estimateWaitTime(rank)"></span></p>
+          <p class="feedback" x-text="rank.feedback"></p>
 
-    <div class="mt-4 text-right">
-      <span class="font-semibold">Total Income:</span>
-      <span x-text="'R' + madeADay()" class="font-bold text-green-600"></span>
-    </div>
-  </div>
+          <div class="actions">
+            <button @click="queueInLine(rank)">Queue In</button>
+            <button @click="leaveQueue(rank)">Leave Queue</button>
+            <button @click="leave(rank)">Taxi Leave</button>
+            <button @click="addTaxi(rank)">Add Taxi</button>
+          </div>
+        </div>
+      </template>
+    </section>
 
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('rank', function () {
-        return {
-          open: false,
-          newStop: '',
-          newFare: '',
-          mainRank: 'Cape Town',
-          ranks: this.$persist([
-            { destination: 'Belhar', limit: 2, queue: 0, fare: 22, trips: 0, taxis: 4, overallTotal: 0, profit: 0, feedback: '' },
-            { destination: 'Parow', limit: 7, queue: 0, fare: 18, trips: 0, taxis: 4, overallTotal: 0, profit: 0, feedback: '' },
-            { destination: 'Woodstock', limit: 7, queue: 0, fare: 12, trips: 0, taxis: 4, overallTotal: 0, profit: 0, feedback: '' }
-          ]).as('Taxi Rank Details'),
+    <section class="summary">
+      <h3>Total Made Across All Routes: R<span x-text="madeADay()"></span></h3>
+    </section>
+  </main>
 
-          init() {},
-
-          addRoute(stop, fare) {
-            stop = stop.trim();
-            if (!stop || !fare) return alert("Please enter both destination and fare.");
-            if (stop.toLowerCase() === this.mainRank.toLowerCase()) return alert("Destination cannot be the same as departure point.");
-            if (this.ranks.some(r => r.destination.toLowerCase() === stop.toLowerCase())) return alert("Destination already exists.");
-            this.ranks.push({ destination: stop, limit: 7, taxiLimit: 1, queue: 0, fare, trips: 0, taxis: 4, overallTotal: 0, profit: 0, feedback: '' });
-            this.open = false;
-            this.newStop = '';
-            this.newFare = '';
-          },
-
-          queueInLine(destination) {
-            destination.queue++;
-            if (destination.queue >= destination.limit) {
-              destination.feedback = this.taxiFull;
-              setTimeout(() => destination.feedback = "", 3000);
-            }
-          },
-
-          leaveQueue(destination) {
-            if (destination.queue >= 1) {
-              destination.queue--;
-            } else {
-              destination.feedback = this.invalidAction;
-              setTimeout(() => destination.feedback = "", 3000);
-            }
-          },
-
-          leave(destination) {
-            if (destination.queue < destination.limit) {
-              destination.feedback = this.taxiNotFull;
-              setTimeout(() => destination.feedback = "", 3000);
-            } else if (destination.taxis === 0) {
-              destination.feedback = this.notAvailable;
-              setTimeout(() => destination.feedback = "", 3000);
-            } else {
-              destination.trips++;
-              destination.taxis--;
-              destination.queue = 0;
-              this.getTotalFare(destination);
-              this.madeADay();
-            }
-          },
-
-          addTaxi(taxi) {
-            if (taxi.taxis <= 3) taxi.taxis++;
-          },
-
-          taxiFull: 'Mini taxi full & can leave the rank',
-          taxiNotFull: 'Taxi cannot leave the rank unless full',
-          invalidAction: 'Invalid action',
-          notAvailable: 'Taxis not available',
-
-          getTotalFare(destination) {
-            const newTotal = destination.limit * destination.fare;
-            destination.overallTotal += newTotal;
-          },
-
-          madeADay() {
-            return _.sumBy(this.ranks, r => r.overallTotal);
-          },
-
-          estimateWaitTime(rank) {
-            if (rank.queue >= rank.limit) return 'Taxi is full';
-            const peopleNeeded = rank.limit - rank.queue;
-            const secondsPerPerson = 30;
-            const totalSeconds = peopleNeeded * secondsPerPerson;
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            return `${minutes}m ${seconds}s`;
-          },
-        }
-      });
-    });
-  </script>
 </body>
 </html>
