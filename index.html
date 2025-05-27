@@ -1,115 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-    <title>Taxi Rank-App</title>
-    <link rel="stylesheet" href="./css/style.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
-    <script src="./js/app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taxi Rank Modal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12" id="allData" x-data="rank">
-                <h1>Taxi Rank App</h1>
-                
-             <button 
-                @click="open = true" 
-                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded my-4"
-            >
-                Add New Route
-            </button>
+  <div class="container mx-auto p-4" x-data="{ open: false }">
+    
+    <h1 class="text-2xl sm:text-3xl text-center font-bold text-gray-800 mb-6">
+      Taxi Rank Destinations
+    </h1>
 
-               <!-- Modal Overlay -->
-            <div 
-                x-show="open" 
-                style="display: none;" 
-                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-            >
-                <!-- Modal Box -->
-                <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
-                    <h2 class="text-xl font-semibold mb-4">Add New Route</h2>
-            
-                    <label class="block mb-2 font-medium">Destination:</label>
-                    <input 
-                        x-model="newStop" 
-                        type="text" 
-                        placeholder="e.g. Woodstock" 
-                        class="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring focus:border-blue-300"
-                    >
-            
-                    <label class="block mb-2 font-medium">Fare (R):</label>
-                    <input 
-                        x-model="newFare" 
-                        type="number" 
-                        min="1" 
-                        placeholder="e.g. 25" 
-                        class="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring focus:border-blue-300"
-                    >
-            
-                    <div class="flex justify-end space-x-3">
-                        <button 
-                            @click="open = false"
-                            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
-                        >Cancel</button>
-            
-                        <button 
-                            @click="addRoute(newStop, newFare)"
-                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-                        >Add Route</button>
-                    </div>
-                </div>
-            </div>
-
-            <div style="overflow-x:auto;">
-                <table class="taxiRank">
-                    <tr>
-                        <th>Departure</th>
-                        <th>Destination</th>
-                        <th>Passenger Actions</th>
-                        <th>Estimated Waiting Time</>
-                        <th>Taxi Trips</th>
-                        <th>Taxi Fare</th>
-                        <th>Total Fare</th>
-                        <th>Taxis Available</th>
-                        <th>Notice Board</th>
-                        <th>Taxi Actions</th>
-                    </tr>
-                    <template x-for="rank in ranks">
-                        <tr>
-                            <td x-text="mainRank"></td>
-                            <td x-text="rank.destination"></td>
-                            <td>
-                                <button @click="queueInLine(rank)">+</button>
-                                <span x-text="rank.queue"></span>
-                                <button @click="leaveQueue(rank)">-</button>
-                            </td>
-                            <td x-text="estimateWaitTime(rank)"></td>
-                            <td x-text="rank.trips"></td>
-                            <td x-text="'R' + rank.fare"></td>
-                            <td x-text="'R' + rank.overallTotal.toFixed(2)"></td>
-                            <td x-text="rank.taxis"></td>
-                            <td x-text="rank.feedback"></td>
-                            <td>
-                                <button @click="leave(rank)">Leave</button>
-                                <button @click="addTaxi(rank)">Add taxi</button>
-                            </td>
-                        </tr>
-                    </template>
-                </table>
-            </div>
-            </div>
-        </div>
+    <div class="flex justify-center mb-6">
+      <button 
+        @click="open = true"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow"
+      >
+        Add New Route
+      </button>
     </div>
-</body>
 
-</html>  
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white shadow rounded-lg p-4 max-w-full mx-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-blue-100 text-left text-sm font-semibold text-gray-700">
+            <th class="border border-gray-300 px-4 py-2">From</th>
+            <th class="border border-gray-300 px-4 py-2">To</th>
+            <th class="border border-gray-300 px-4 py-2">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample row -->
+          <tr>
+            <td class="border border-gray-300 px-4 py-2">Johannesburg</td>
+            <td class="border border-gray-300 px-4 py-2">Pretoria</td>
+            <td class="border border-gray-300 px-4 py-2">R60</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div 
+      x-show="open" 
+      x-transition 
+      x-cloak
+      class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 relative">
+
+        <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">Add Destination</h2>
+
+        <form class="space-y-4 add-destination-form">
+          <input 
+            type="text" 
+            placeholder="From" 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+          <input 
+            type="text" 
+            placeholder="To" 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+          <input 
+            type="number" 
+            placeholder="Price (e.g., R50)" 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+          <div class="flex justify-between mt-4">
+            <button 
+              type="button" 
+              @click="open = false" 
+              class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
