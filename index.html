@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" x-data="rankApp()" x-init="init()">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Taxi Rank App</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-<body>
+<html lang="en" x-data="taxiRankApp" x-init>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taxi Rank App</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body>
 
-<div class="container">
-  <h1>Taxi Rank - Cape Town</h1>
-  <button @click="open = true" class="open-modal-btn">+ Add Route</button>
+    <div class="container">
+      <h1>Taxi Rank - Cape Town</h1>
+      <button @click="openModal = true" class="open-modal-btn">+ Add Route</button>
 
-  <!-- Modal -->
-  <div x-show="open" x-cloak class="modal">
-    <div class="modal-content">
-      <h2>Add New Route</h2>
-      <input type="text" placeholder="Destination" x-model="newStop" />
-      <input type="number" placeholder="Fare" x-model="newFare" />
-      <div class="modal-actions">
-        <button @click="addRoute()">Add</button>
-        <button @click="open = false">Cancel</button>
+      <!-- Modal -->
+      <div x-show="openModal" x-cloak class="modal">
+        <div class="modal-content">
+          <h2>Add New Route</h2>
+          <input type="text" placeholder="Destination" x-model="newStop" />
+          <input type="number" placeholder="Fare" x-model="newFare" />
+          <div class="modal-actions">
+            <button @click="addRank()">Add</button>
+            <button @click="openModal = false">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Routes Table -->
+      <div class="card">
+        <template x-for="(rank, index) in ranks" :key="index">
+          <div class="rank-card">
+            <h3 x-text="rank.destination"></h3>
+            <p>Fare: R<span x-text="rank.fare"></span></p>
+            <p>Queue: <span x-text="rank.queue"></span> / <span x-text="rank.limit"></span></p>
+            <p>Taxis Available: <span x-text="rank.taxis"></span></p>
+            <p>Total Trips: <span x-text="rank.trips"></span></p>
+            <p>Income: R<span x-text="rank.overallTotal"></span></p>
+            <p class="feedback" x-text="rank.feedback"></p>
+            <div class="actions">
+              <button @click="queue(rank)">Join Queue</button>
+              <button @click="dequeue(rank)">Leave Queue</button>
+              <button @click="depart(rank)">Taxi Leave</button>
+              <button @click="addTaxi(rank)">+ Taxi</button>
+            </div>
+            <p>Estimated Wait: <span x-text="estimatedWait(rank)"></span></p>
+          </div>
+        </template>
+      </div>
+
+      <div class="summary">
+        <h2>Total Income Made: R<span x-text="totalIncome()"></span></h2>
       </div>
     </div>
-  </div>
 
-  <!-- Routes Table -->
-  <div class="card" x-show="ranks.length > 0">
-    <template x-for="(rank, index) in ranks" :key="index">
-      <div class="rank-card">
-        <h3 x-text="rank.destination"></h3>
-        <p>Fare: R<span x-text="rank.fare"></span></p>
-        <p>Queue: <span x-text="rank.queue"></span> / <span x-text="rank.limit"></span></p>
-        <p>Taxis Available: <span x-text="rank.taxis"></span></p>
-        <p>Total Trips: <span x-text="rank.trips"></span></p>
-        <p>Income: R<span x-text="rank.overallTotal"></span></p>
-        <p class="feedback" x-text="rank.feedback"></p>
-        <div class="actions">
-          <button @click="queueInLine(rank)">Join Queue</button>
-          <button @click="leaveQueue(rank)">Leave Queue</button>
-          <button @click="leave(rank)">Taxi Leave</button>
-          <button @click="addTaxi(rank)">+ Taxi</button>
-        </div>
-        <p>Estimated Wait: <span x-text="estimateWaitTime(rank)"></span></p>
-      </div>
-    </template>
-  </div>
-
-  <div class="summary">
-    <h2>Total Income Made: R<span x-text="madeADay()"></span></h2>
-  </div>
-</div>
-  <script defer src="./js/app.js"></script>
-</body>
+    <!-- Correct JS path -->
+    <script src="./js/app.js"></script>
+  </body>
 </html>
