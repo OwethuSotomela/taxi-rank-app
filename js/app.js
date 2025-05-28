@@ -1,6 +1,6 @@
-function rankApp() {
-  return {
-    open: false,
+document.addEventListener('alpine:init', () => {
+  Alpine.data('taxiRankApp', () => ({
+    openModal: false,
     newStop: '',
     newFare: '',
     ranks: [
@@ -36,17 +36,12 @@ function rankApp() {
       }
     ],
 
-    init() {
-      this.open = false;
-      this.newStop = '';
-      this.newFare = '';
-    },
-
-    addRoute() {
+    addRank() {
       if (!this.newStop || isNaN(this.newFare) || this.newFare <= 0) {
         alert('Please enter a valid destination and fare.');
         return;
       }
+
       this.ranks.push({
         destination: this.newStop,
         fare: parseFloat(this.newFare),
@@ -57,12 +52,13 @@ function rankApp() {
         overallTotal: 0,
         feedback: ''
       });
+
       this.newStop = '';
       this.newFare = '';
-      this.open = false;
+      this.openModal = false;
     },
 
-    queueInLine(rank) {
+    queue(rank) {
       if (rank.queue < rank.limit) {
         rank.queue++;
         rank.feedback = '';
@@ -71,7 +67,7 @@ function rankApp() {
       }
     },
 
-    leaveQueue(rank) {
+    dequeue(rank) {
       if (rank.queue > 0) {
         rank.queue--;
         rank.feedback = '';
@@ -80,7 +76,7 @@ function rankApp() {
       }
     },
 
-    leave(rank) {
+    depart(rank) {
       if (rank.queue >= rank.limit && rank.taxis > 0) {
         rank.queue -= rank.limit;
         rank.taxis--;
@@ -99,15 +95,14 @@ function rankApp() {
       rank.feedback = '';
     },
 
-    estimateWaitTime(rank) {
+    estimatedWait(rank) {
       const passengersNeeded = rank.limit - rank.queue;
-      const waitPerPassenger = 3; // assume 3 minutes
-      const waitTime = passengersNeeded * waitPerPassenger;
-      return `${waitTime} mins`;
+      const waitPerPassenger = 3; // in minutes
+      return `${passengersNeeded * waitPerPassenger} mins`;
     },
 
-    madeADay() {
-      return this.ranks.reduce((total, rank) => total + rank.overallTotal, 0);
+    totalIncome() {
+      return this.ranks.reduce((sum, rank) => sum + rank.overallTotal, 0);
     }
-  };
-}
+  }));
+});
