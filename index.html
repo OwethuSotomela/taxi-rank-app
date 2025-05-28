@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" x-data="rank" x-init="init()" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" x-data="rankApp()" x-init="init()">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Taxi Rank App</title>
   <link rel="stylesheet" href="./css/style.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="./js/app.js"></script>
 </head>
 <body>
 
@@ -17,13 +14,13 @@
   <button @click="open = true" class="open-modal-btn">+ Add Route</button>
 
   <!-- Modal -->
-  <div x-show="open" class="modal" x-cloak>
+  <div x-show="open" x-cloak class="modal">
     <div class="modal-content">
       <h2>Add New Route</h2>
       <input type="text" placeholder="Destination" x-model="newStop" />
       <input type="number" placeholder="Fare" x-model="newFare" />
       <div class="modal-actions">
-        <button @click="addRoute(newStop, parseFloat(newFare))">Add</button>
+        <button @click="addRoute()">Add</button>
         <button @click="open = false">Cancel</button>
       </div>
     </div>
@@ -55,6 +52,6 @@
     <h2>Total Income Made: R<span x-text="madeADay()"></span></h2>
   </div>
 </div>
-
+  <script defer src="./js/app.js"></script>
 </body>
 </html>
