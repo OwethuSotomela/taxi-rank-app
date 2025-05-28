@@ -1,9 +1,9 @@
-document.addEventListener('alpine:init', () => {
-  Alpine.data('rank', () => ({
+function rankApp() {
+  return {
     open: false,
     newStop: '',
     newFare: '',
-    ranks: Alpine.$persist([
+    ranks: [
       {
         destination: 'Khayelitsha',
         fare: 12,
@@ -34,7 +34,7 @@ document.addEventListener('alpine:init', () => {
         overallTotal: 0,
         feedback: ''
       }
-    ]).as('Taxi Rank Details'),
+    ],
 
     init() {
       this.open = false;
@@ -42,14 +42,14 @@ document.addEventListener('alpine:init', () => {
       this.newFare = '';
     },
 
-    addRoute(destination, fare) {
-      if (!destination || isNaN(fare) || fare <= 0) {
+    addRoute() {
+      if (!this.newStop || isNaN(this.newFare) || this.newFare <= 0) {
         alert('Please enter a valid destination and fare.');
         return;
       }
       this.ranks.push({
-        destination,
-        fare,
+        destination: this.newStop,
+        fare: parseFloat(this.newFare),
         queue: 0,
         limit: 12,
         taxis: 1,
@@ -109,5 +109,5 @@ document.addEventListener('alpine:init', () => {
     madeADay() {
       return this.ranks.reduce((total, rank) => total + rank.overallTotal, 0);
     }
-  }));
-});
+  };
+}
