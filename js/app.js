@@ -1,84 +1,113 @@
 document.addEventListener('alpine:init', () => {
-  Alpine.data('rank', function () {
-    return {
-      init() {},
-      open: false,
-      newStop: '',
-      newFare: '',
-      mainRank: 'Cape Town',
-      ranks: this.$persist([
-        { destination: 'Belhar', limit: 2, queue: 0, fare: 22, trips: 0, taxis: 4, overallTotal: 0, feedback: '' },
-        { destination: 'Parow', limit: 7, queue: 0, fare: 18, trips: 0, taxis: 4, overallTotal: 0, feedback: '' },
-        { destination: 'Woodstock', limit: 7, queue: 0, fare: 12, trips: 0, taxis: 4, overallTotal: 0, feedback: '' },
-      ]).as('Taxi Rank Details'),
-
-      taxiFull: 'Mini taxi full & can leave the rank',
-      taxiNotFull: 'Taxi cannot leave the rank unless full',
-      invalidAction: 'Invalid action',
-      notAvailable: 'Taxis not available',
-
-      addRoute(stop, fare) {
-        stop = stop.trim();
-        if (!stop || !fare) return alert("Please enter both destination and fare.");
-        if (stop.toLowerCase() === this.mainRank.toLowerCase()) return alert("Destination cannot be the same as the departure point.");
-        if (this.ranks.some(r => r.destination.toLowerCase() === stop.toLowerCase())) return alert("This destination already exists.");
-
-        this.ranks.push({ destination: stop, limit: 7, taxiLimit: 1, queue: 0, fare: fare, trips: 0, taxis: 4, overallTotal: 0, feedback: '' });
-        this.open = false;
-        this.newStop = '';
-        this.newFare = '';
+  Alpine.data('rank', () => ({
+    open: false,
+    newStop: '',
+    newFare: '',
+    ranks: Alpine.$persist([
+      {
+        destination: 'Khayelitsha',
+        fare: 12,
+        queue: 0,
+        limit: 12,
+        taxis: 1,
+        trips: 0,
+        overallTotal: 0,
+        feedback: ''
       },
-
-      queueInLine(destination) {
-        destination.queue++;
-        if (destination.queue >= destination.limit) {
-          destination.feedback = this.taxiFull;
-          setTimeout(() => destination.feedback = '', 3000);
-        }
+      {
+        destination: 'Mitchells Plain',
+        fare: 10,
+        queue: 0,
+        limit: 10,
+        taxis: 1,
+        trips: 0,
+        overallTotal: 0,
+        feedback: ''
       },
-
-      leaveQueue(destination) {
-        if (destination.queue > 0) {
-          destination.queue--;
-        } else {
-          destination.feedback = this.invalidAction;
-          setTimeout(() => destination.feedback = '', 3000);
-        }
-      },
-
-      leave(destination) {
-        if (destination.queue < destination.limit) {
-          destination.feedback = this.taxiNotFull;
-          setTimeout(() => destination.feedback = '', 3000);
-        } else if (destination.taxis === 0) {
-          destination.feedback = this.notAvailable;
-          setTimeout(() => destination.feedback = '', 3000);
-        } else {
-          destination.trips++;
-          destination.taxis--;
-          destination.queue = 0;
-          this.getTotalFare(destination);
-        }
-      },
-
-      addTaxi(destination) {
-        if (destination.taxis <= 3) destination.taxis++;
-      },
-
-      getTotalFare(destination) {
-        destination.overallTotal += destination.limit * destination.fare;
-      },
-
-      madeADay() {
-        return _.sumBy(this.ranks, r => r.overallTotal);
-      },
-
-      estimateWaitTime(rank) {
-        if (rank.queue >= rank.limit) return 'Taxi is full';
-        const peopleNeeded = rank.limit - rank.queue;
-        const totalSeconds = peopleNeeded * 30;
-        return `${Math.floor(totalSeconds / 60)}m ${totalSeconds % 60}s`;
+      {
+        destination: 'Dunoon',
+        fare: 15,
+        queue: 0,
+        limit: 15,
+        taxis: 1,
+        trips: 0,
+        overallTotal: 0,
+        feedback: ''
       }
+    ]).as('Taxi Rank Details'),
+
+    init() {
+      this.open = false;
+      this.newStop = '';
+      this.newFare = '';
+    },
+
+    addRoute(destination, fare) {
+      if (!destination || isNaN(fare) || fare <= 0) {
+        alert('Please enter a valid destination and fare.');
+        return;
+      }
+      this.ranks.push({
+        destination,
+        fare,
+        queue: 0,
+        limit: 12,
+        taxis: 1,
+        trips: 0,
+        overallTotal: 0,
+        feedback: ''
+      });
+      this.newStop = '';
+      this.newFare = '';
+      this.open = false;
+    },
+
+    queueInLine(rank) {
+      if (rank.queue < rank.limit) {
+        rank.queue++;
+        rank.feedback = '';
+      } else {
+        rank.feedback = 'Queue is full.';
+      }
+    },
+
+    leaveQueue(rank) {
+      if (rank.queue > 0) {
+        rank.queue--;
+        rank.feedback = '';
+      } else {
+        rank.feedback = 'Queue is empty.';
+      }
+    },
+
+    leave(rank) {
+      if (rank.queue >= rank.limit && rank.taxis > 0) {
+        rank.queue -= rank.limit;
+        rank.taxis--;
+        rank.trips++;
+        rank.overallTotal += rank.fare * rank.limit;
+        rank.feedback = '';
+      } else if (rank.taxis === 0) {
+        rank.feedback = 'No taxis available.';
+      } else {
+        rank.feedback = 'Not enough passengers.';
+      }
+    },
+
+    addTaxi(rank) {
+      rank.taxis++;
+      rank.feedback = '';
+    },
+
+    estimateWaitTime(rank) {
+      const passengersNeeded = rank.limit - rank.queue;
+      const waitPerPassenger = 3; // assume 3 minutes
+      const waitTime = passengersNeeded * waitPerPassenger;
+      return `${waitTime} mins`;
+    },
+
+    madeADay() {
+      return this.ranks.reduce((total, rank) => total + rank.overallTotal, 0);
     }
-  });
+  }));
 });
