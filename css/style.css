@@ -1,133 +1,49 @@
-[x-cloak] { display: none; }
-
-body {
-  font-family: sans-serif;
-  background: #f7f7f7;
-  margin: 0;
-  padding: 1rem;
+[x-cloak] {
+  display: none;
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-.open-modal-btn {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.5rem 1rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.card {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.rank-card {
-  background: white;
-  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 1rem;
-  flex: 1 1 280px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.actions button {
-  margin: 0.2rem;
-  padding: 0.4rem;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 3px;
-}
-
-.actions button:nth-child(2) {
-  background: #ffc107;
-}
-.actions button:nth-child(3) {
-  background: #dc3545;
-}
-.actions button:nth-child(4) {
-  background: #6c757d;
-}
-
-.feedback {
-  color: red;
-  font-size: 0.9rem;
-}
-
-.summary {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Modal styles */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background: white;
+  background: #fff;
   padding: 1.5rem;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
-}
-
-.modal-content input {
-  display: block;
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.6rem 0;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
+  border-radius: 8px;
+  width: 300px;
 }
 
 .modal-actions button {
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+  margin-right: 8px;
 }
 
-@media (max-width: 600px) {
-  .rank-card {
-    flex: 1 1 100%;
-  }
+.card {
+  margin-top: 2rem;
+}
 
-  .modal-content {
-    width: 95%;
-  }
+.rank-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
-  .modal-actions {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .modal-actions button {
-    width: 100%;
-  }
+.summary {
+  margin-top: 2rem;
+  text-align: center;
 }
