@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Taxi Rank App</title>
-  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="app.js"></script>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
   <button @click="open = true" class="open-modal-btn">+ Add Route</button>
 
   <!-- Modal -->
-  <div x-show="open" class="modal">
+  <div x-show="open" class="modal" x-cloak>
     <div class="modal-content">
       <h2>Add New Route</h2>
       <input type="text" placeholder="Destination" x-model="newStop" />
@@ -55,6 +56,5 @@
   </div>
 </div>
 
-  <script defer src="./js/app.js"></script>
 </body>
 </html>
