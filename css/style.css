@@ -110,3 +110,22 @@ h1, h2 {
   color: white;
   border-radius: 5px;
 }
+
+@media (max-width: 600px) {
+  .rank-card {
+    flex: 1 1 100%;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
