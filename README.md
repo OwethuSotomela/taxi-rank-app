@@ -61,7 +61,7 @@ They are starting with **one rank**. The app should:
 
 🧑🏽‍💻 Developer
 
-Owethu Sotomela
+[Owethu Sotomela](https://github.com/OwethuSotomela)
 Full Stack Developer | Founder of SotoPrime
 Passionate about practical digital solutions for local challenges 💡
 
